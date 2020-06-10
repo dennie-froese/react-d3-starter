@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import Scatter from "./components/Scatter";
+import ScatterBetter from "./components/ScatterBetter";
 
 function App() {
-  return <Scatter />;
+  return <ScatterBetter />;
 }
 
 export default App;
