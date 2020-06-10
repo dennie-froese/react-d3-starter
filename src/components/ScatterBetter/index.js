@@ -1,4 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+
+import AxisY from "../AxisY";
+import AxisX from "../AxisX";
+
 import { scaleLinear } from "d3-scale";
 import { extent } from "d3-array";
 
@@ -51,7 +55,9 @@ function ScatterBetter() {
     <div>
       <svg width={w} height={h}>
         <g ref={ref} transform={`translate(${margin.left},${margin.top})`}>
+          <AxisY yScale={yScale} height={height} />
           {circles}
+          <AxisX xScale={xScale} width={width} />
         </g>
       </svg>
     </div>
