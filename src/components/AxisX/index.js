@@ -1,7 +1,7 @@
 import React from "react";
 
 function AxisX({ xScale, height }) {
-  const textPadding = 10;
+  const textPadding = 20;
 
   const axis = xScale.ticks(10).map((d, i) => (
     <g className="x-tick" key={i}>

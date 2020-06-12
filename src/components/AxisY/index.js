@@ -1,7 +1,7 @@
 import React from "react";
 
 function AxisY({ yScale, width }) {
-  const textPadding = -20;
+  const textPadding = -30;
 
   const axis = yScale.ticks(5).map((d, i) => (
     <g key={i} className="y-tick">

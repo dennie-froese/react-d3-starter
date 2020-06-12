@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import ScatterBetter from "./components/ScatterBetter";
 
 function App() {
