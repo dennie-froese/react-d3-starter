@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
-
-import AxisY from "../AxisY";
-import AxisX from "../AxisX";
-
+import React, { useState } from "react";
+import { useSpring, animated } from "react-spring";
 import { scaleLinear } from "d3-scale";
 import { extent } from "d3-array";
+import AxisY from "../AxisY";
+import AxisX from "../AxisX";
 
 function RandomData() {
   const data = [...Array(100)].map((e, i) => {
@@ -18,9 +17,12 @@ function RandomData() {
 }
 
 function ScatterBetter() {
-  const ref = useRef(null);
+  const [data] = useState(RandomData());
+  const props = useSpring({
+    r: 10,
+    from: { r: 0 }
+  });
 
-  const data = RandomData();
   const w = 600;
   const h = 600;
   const margin = {
@@ -42,22 +44,31 @@ function ScatterBetter() {
     .range([height, 0]);
 
   const circles = data.map((d, i) => (
-    <circle
+    <animated.circle
       key={i}
-      r={5}
+      r={props.r}
       cx={xScale(d.x)}
       cy={yScale(d.y)}
-      style={{ fill: "lightblue" }}
+      style={{ fill: "purple" }}
     />
   ));
 
   return (
-    <div>
+    <div
+      style={{
+        padding: 20,
+        justifyItems: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center"
+      }}
+    >
+      <h1>React + D3 + React Spring</h1>
       <svg width={w} height={h}>
-        <g ref={ref} transform={`translate(${margin.left},${margin.top})`}>
-          <AxisY yScale={yScale} height={height} />
+        <g transform={`translate(${margin.left},${margin.top})`}>
+          <AxisY yScale={yScale} width={width} />
+          <AxisX xScale={xScale} height={height} />
           {circles}
-          <AxisX xScale={xScale} width={width} />
         </g>
       </svg>
     </div>
